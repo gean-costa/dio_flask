@@ -1,33 +1,44 @@
-from models import Pessoas
+from models import Pessoas, Usuarios
 
 
-def inserir():
+def inserir_pessoa():
     pessoa = Pessoas(nome='Juliana', idade=21)
     pessoa.save()
     print(pessoa)
 
 
-def consultar():
+def consultar_pessoa():
     pessoa = Pessoas.query.all()
     print(pessoa[0].id)
 
-    #pessoa = Pessoas.query.filter_by(nome='Gean Costa')  # .first()
-    #print(pessoa[0].idade)
+    # pessoa = Pessoas.query.filter_by(nome='Gean Costa')  # .first()
+    # print(pessoa[0].idade)
 
 
-def alterar():
+def alterar_pessoa():
     pessoa = Pessoas.query.filter_by(nome='Gean').first()
     pessoa.idade = 30
     pessoa.save()
 
 
-def excluir():
+def excluir_pessoa():
     pessoa = Pessoas.query.filter_by(nome='Gean').first()
     pessoa.delete()
 
+def inserir_usuario(login, senha):
+    usuario = Usuarios(login=login, senha=senha)
+    usuario.save()
+
+def consultar_usuarios():
+    usuarios = Usuarios.query.all()
+    print(usuarios)
+
+
 
 if __name__ == "__main__":
-    # inserir()
-    # alterar()
-    # excluir()
-    consultar()
+    # inserir_pessoa()
+    inserir_usuario('geandreson','12345')
+    # alterar_pessoa()
+    # excluir_pessoa()
+    # consultar_pessoa()
+    consultar_usuarios()
