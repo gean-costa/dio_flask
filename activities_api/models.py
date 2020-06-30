@@ -27,12 +27,21 @@ class Pessoas(base):
         db_session.delete(self)
         db_session.commit()
 
+
 class Atividades(base):
     __tablename__ = 'atividades'
     id = Column(Integer, primary_key=True)
     nome = Column(String(50))
     pessoa_id = Column(Integer, ForeignKey('pessoas.id'))
     pessoa = relationship('Pessoas')
+
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+    def delete(self):
+        db_session.delete(self)
+        db_session.commit()
 
 
 def init_db():
